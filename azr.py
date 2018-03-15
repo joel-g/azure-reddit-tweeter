@@ -21,13 +21,30 @@ def authenticate_reddit():
     print('Reddit authenticated.')
     return reddit
 
+def get_reddit_posts(reddit):
+  posts = reddit.subreddit('azure').hot(limit=12)
+  # print(posts)
+  for post in posts:
+    print(post.title)
+    print(post.url)
+    print(post.id)
 
+def record_already_tweeted(submission_id):
+  writeable = open("tweeted.txt", 'a+')
+  writeable.write(submission_id + '\n')
+  writeable.close()
 
-
+def is_tweeted(submission_id):
+  readable = open("tweeted.txt", "r")
+  if submission_id in readable.read().splitlines():
+    return True
+  else:
+    return False
 
 def main():
   reddit = authenticate_reddit()
   twitter = authenticate_twitter()
+  get_reddit_posts(reddit)
 
 if __name__ == '__main__':
   main()
