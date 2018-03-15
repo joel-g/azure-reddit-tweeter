@@ -1,5 +1,4 @@
 import tweepy, praw, time
-# IMPORT SOME STUFF
 
 with open('config.ini','r') as config:
   tokens = config.readlines()
