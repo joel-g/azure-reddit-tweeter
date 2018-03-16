@@ -28,8 +28,8 @@ def get_reddit_posts(reddit):
   time.sleep(1)
   posts = []
   for post in reddit.subreddit('azure').hot(limit=12):
-    if "reddit.com" in post.url:
-      posts.append(post)
+    #if "reddit.com" in post.url:
+    posts.append(post)
   print("Returning " + str(len(posts)) + " reddit posts")
   return posts
     
@@ -72,7 +72,7 @@ def main():
       if not is_tweeted(post.id):
         tweet(twitter, post)
         print("Sleeping 3 hours...\n\n")
-        time.sleep(10800)
+        time.sleep(14400)
         break
 
 if __name__ == '__main__':
