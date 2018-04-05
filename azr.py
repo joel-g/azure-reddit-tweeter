@@ -28,7 +28,6 @@ def get_reddit_posts(reddit):
   time.sleep(1)
   posts = []
   for post in reddit.subreddit('azure').hot(limit=12):
-    #if "reddit.com" in post.url:
     posts.append(post)
   print("Returning " + str(len(posts)) + " reddit posts")
   return posts
