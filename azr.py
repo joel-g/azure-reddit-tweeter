@@ -27,7 +27,7 @@ def get_reddit_posts(reddit):
   print("Fetching new posts...")
   time.sleep(1)
   posts = []
-  for post in reddit.subreddit('azure').hot(limit=12):
+  for post in reddit.subreddit('azure').hot(limit=20):
     posts.append(post)
   print("Returning " + str(len(posts)) + " reddit posts")
   return posts
