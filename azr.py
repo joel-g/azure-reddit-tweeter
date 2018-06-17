@@ -62,7 +62,7 @@ def tweet(twitter, submission):
     print("I was not able to TWEET!")
     record_already_tweeted(submission.id + "FAILURE")
   time.sleep(2)
-  
+
 def main():
   reddit = authenticate_reddit()
   twitter = authenticate_twitter()
@@ -70,8 +70,8 @@ def main():
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
         tweet(twitter, post)
-        print("Sleeping 5 hours...\n\n")
-        time.sleep(18000)
+        print("Sleeping 10 hours...\n\n")
+        time.sleep(36000)
         break
 
 if __name__ == '__main__':
