@@ -65,20 +65,26 @@ def tweet(twitter, submission):
 
 def get_azure_tweets(twitter):
   new_tweets = twitter.search(q="azure", count=100, lang="en")
+  print("Returning 100 Azure tweets")
   return new_tweets
 
 def get_user_ids(list_of_tweets):
   user_ids = []
   for tweet in list_of_tweets:
     user_ids.append(tweet.user.id)
+  print("Returning user IDs")
   return user_ids
 
 def follow_users(list_of_ids, twitter):
+  count = 0
+  print("Following new accounts")
   for user_id in list_of_ids:
     try:
       twitter.create_friendship(user_id)
+      count = count + 1
     except:
       print("Couldn't follow this user.")
+  print("Followed " + str(count) + " new accounts")
     
 
 def main():
@@ -89,8 +95,8 @@ def main():
       if not is_tweeted(post.id):
         tweet(twitter, post)
         print("Sleeping 10 hours...\n\n")
-        time.sleep(36000)
         follow_users(get_user_ids(get_azure_tweets(twitter)), twitter)
+        time.sleep(36000)
         break
 
 if __name__ == '__main__':
