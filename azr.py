@@ -87,6 +87,7 @@ def follow_users(list_of_ids, twitter):
   print("Followed " + str(count) + " new accounts")
 
 def unfollow_old(twitter):
+  print("Unfollowing 100 oldest follows")
   follows_ids = twitter.friends_ids(twitter.me().id)
   follows_ids.reverse()
   for i in range(0,99):
