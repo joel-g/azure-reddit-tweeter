@@ -87,10 +87,10 @@ def follow_users(list_of_ids, twitter):
   print("Followed " + str(count) + " new accounts")
 
 def unfollow_old(twitter):
-  print("Unfollowing 100 oldest follows")
+  print("Unfollowing 90 oldest follows")
   follows_ids = twitter.friends_ids(twitter.me().id)
   follows_ids.reverse()
-  for i in range(0,99):
+  for i in range(0,89):
     twitter.destroy_friendship(follows_ids[i])
 
 def main():
@@ -99,10 +99,10 @@ def main():
   while True:
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
-        tweet(twitter, post)
-        print("Sleeping 10 hours...\n\n")
+        tweet(twitter, post)      
         follow_users(get_user_ids(get_azure_tweets(twitter)), twitter)
         unfollow_old(twitter)
+	print("Sleeping 10 hours...\n\n")
         time.sleep(36000)
         break
   
