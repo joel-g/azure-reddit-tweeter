@@ -100,10 +100,10 @@ def main():
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
         tweet(twitter, post)      
-        follow_users(get_user_ids(get_azure_tweets(twitter)), twitter)
-        unfollow_old(twitter)
-        print("Sleeping 10 hours...\n\n")
-        time.sleep(36000)
+        # follow_users(get_user_ids(get_azure_tweets(twitter)), twitter)
+        # unfollow_old(twitter)
+        print("Sleeping 7 hours...\n\n")
+        time.sleep(25200)
         break
   
 
