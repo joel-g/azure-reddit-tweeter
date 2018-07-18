@@ -93,7 +93,7 @@ def unfollow_old(twitter, x):
   follows_ids.reverse()
   for i in range(0,x-1):
     twitter.destroy_friendship(follows_ids[i])
-    time.sleep(1))
+    time.sleep(1)
 
 def main():
   reddit = authenticate_reddit()
