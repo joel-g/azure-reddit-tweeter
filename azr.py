@@ -104,8 +104,8 @@ def main():
         tweet(twitter, post)
         new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 300)), twitter)
         unfollow_old(twitter)
-        print("Sleeping 10 hours...\n\n")
-        time.sleep(36000)
+        print("Sleeping 7 hours...\n\n")
+        time.sleep(25200)
         break
   
 
