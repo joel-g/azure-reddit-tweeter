@@ -63,9 +63,9 @@ def tweet(twitter, submission):
     record_already_tweeted(submission.id + "FAILURE")
   time.sleep(2)
 
-def get_azure_tweets(twitter):
-  new_tweets = twitter.search(q="azure", count=100, lang="en")
-  print("Returning 100 Azure tweets")
+def get_azure_tweets(twitter, x):
+  new_tweets = twitter.search(q="azure", count=x, lang="en")
+  print("Returning " + str(x) + " Azure tweets")
   return new_tweets
 
 def get_user_ids(list_of_tweets):
@@ -85,13 +85,15 @@ def follow_users(list_of_ids, twitter):
     except:
       print("Couldn't follow this user.")
   print("Followed " + str(count) + " new accounts")
+  return count
 
-def unfollow_old(twitter):
-  print("Unfollowing 100 oldest follows")
+def unfollow_old(twitter, x):
+  print("Unfollowing " + str(x) + " oldest follows")
   follows_ids = twitter.friends_ids(twitter.me().id)
   follows_ids.reverse()
-  for i in range(0,99):
+  for i in range(0,x-1):
     twitter.destroy_friendship(follows_ids[i])
+    time.sleep(1))
 
 def main():
   reddit = authenticate_reddit()
@@ -100,9 +102,9 @@ def main():
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
         tweet(twitter, post)
-        print("Sleeping 10 hours...\n\n")
-        follow_users(get_user_ids(get_azure_tweets(twitter)), twitter)
+        new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 300)), twitter)
         unfollow_old(twitter)
+        print("Sleeping 10 hours...\n\n")
         time.sleep(36000)
         break
   
