@@ -79,6 +79,7 @@ def follow_users(list_of_ids, twitter):
   count = 0
   print("Following new accounts")
   for user_id in list_of_ids:
+    time.sleep(1)
     try:
       twitter.create_friendship(user_id)
       count = count + 1
@@ -102,7 +103,7 @@ def main():
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
         tweet(twitter, post)
-        new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 50)), twitter)
+        new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 20)), twitter)
         # unfollow_old(twitter, new_followed)
         print("Sleeping 7 hours...\n\n")
         time.sleep(25200)
