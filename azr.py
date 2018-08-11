@@ -94,7 +94,8 @@ def unfollow_old(twitter, x):
   follows_ids.reverse()
   for i in range(0,x-1):
     twitter.destroy_friendship(follows_ids[i])
-    time.sleep(1)
+    print(i)
+    time.sleep(90)
 
 def main():
   reddit = authenticate_reddit()
@@ -104,7 +105,7 @@ def main():
       if not is_tweeted(post.id):
         tweet(twitter, post)
         new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 200)), twitter)
-        # unfollow_old(twitter, new_followed)
+        unfollow_old(twitter, new_followed)
         print("Sleeping 7 hours...\n\n")
         time.sleep(25200)
         break
