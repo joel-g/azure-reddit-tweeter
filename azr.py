@@ -97,20 +97,27 @@ def unfollow_old(twitter, x):
     print(i)
     time.sleep(180)
 
+def like_tweets(twitter, tweets):
+  for tweet in tweets:
+    try:
+      twitter.create_favorite(tweet.id)
+    except: 
+      print("Couldn't like that tweet")
+
 def main():
   reddit = authenticate_reddit()
   twitter = authenticate_twitter()
   while True:
+    like_tweets(twitter, get_azure_tweets(twitter, 50))
     for post in get_reddit_posts(reddit):
       if not is_tweeted(post.id):
         tweet(twitter, post)
-        new_followed = follow_users(get_user_ids(get_azure_tweets(twitter, 15)), twitter)
-        # unfollow_old(twitter, new_followed)
+        count = follow_users(get_user_ids(get_azure_tweets(twitter, 25)), twitter)
+        unfollow_old(twitter, count-1)
         print("Sleeping 7 hours...\n\n")
-        time.sleep(25200)
+        time.sleep(21600)
         break
   
 
 if __name__ == '__main__':
   main()
-
