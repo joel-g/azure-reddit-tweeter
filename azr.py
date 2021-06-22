@@ -82,9 +82,11 @@ def follow_users(list_of_ids, twitter):
     time.sleep(1)
     try:
       twitter.create_friendship(user_id)
+      print("Followed ", user_id)
       count = count + 1
     except:
       print("Couldn't follow this user.")
+      break
   print("Followed " + str(count) + " new accounts")
   return count
 
@@ -101,8 +103,10 @@ def like_tweets(twitter, tweets):
   for tweet in tweets:
     try:
       twitter.create_favorite(tweet.id)
+      print("Liked ", tweet.id)
     except: 
       print("Couldn't like that tweet")
+      break
 
 def main():
   reddit = authenticate_reddit()
